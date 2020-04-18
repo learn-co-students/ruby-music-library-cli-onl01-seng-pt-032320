@@ -7,6 +7,7 @@ class Genre
     def initialize(name)
         @name = name
         @songs = Array.new
+    
         
     end
 
@@ -24,6 +25,8 @@ class Genre
 
     def self.create(name)
         temp = self.new(name)
+        temp.save
+        temp
     end
 
     def genres

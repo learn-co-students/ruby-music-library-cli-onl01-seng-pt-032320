@@ -8,7 +8,8 @@ class Artist
 
 def initialize(name)
     @name = name
-    @songs = Array.new
+    @songs =Array.new
+    
     
 end
 
@@ -26,19 +27,22 @@ end
 
 def self.create(name)
     temp = self.new(name)
+    temp.save
+    temp
 end
 
 def songs
-    Song.all.select {|song| song.artist == self}
+    @songs
 end
 
 def add_song(song)
-    song.artist = self
+  song.artist = self unless song.artist
+  songs.push(song) unless songs.include?(song)
 end
 
 def genres 
     Genres.all.detect do |genre|
-        genre.artist == self
+        genre.artist == self 
     end
 end
 
