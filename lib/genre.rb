@@ -1,5 +1,8 @@
 require 'pry'
 class Genre
+
+    extend Concerns::Findable
+    
     attr_accessor :name
 
     @@all = Array.new
@@ -33,4 +36,14 @@ class Genre
         Artist.all.find |artist|
         artist.genre == self
     end
+
+    def songs
+        @songs
+    end
+
+    def artists 
+        songs.collect {|e| e.artist}.uniq
+    end
+
+
 end

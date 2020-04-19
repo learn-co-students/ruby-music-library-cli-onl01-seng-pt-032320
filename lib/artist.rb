@@ -1,6 +1,8 @@
 require 'pry'
 
 class Artist
+    extend Concerns::Findable
+    
     attr_accessor :name
     attr_reader :songs
 
@@ -41,9 +43,7 @@ def add_song(song)
 end
 
 def genres 
-    Genres.all.detect do |genre|
-        genre.artist == self 
-    end
+    songs.collect {|e| e.genre}.uniq
 end
 
 
