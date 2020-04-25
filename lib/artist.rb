@@ -23,7 +23,7 @@ class Artist
   def self.create(name)
     var = Artist.new(name)
     var.save
-    self
+    var
   end
 
   def add_song(song)

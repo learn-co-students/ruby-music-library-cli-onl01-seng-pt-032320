@@ -35,12 +35,17 @@ class Song
   def self.create(name)
     var = Song.new(name)
     var.save
-    self
+    var
+    #self
   end
 
   def self.find_by_name(name)
     #binding.pry
-    all.find(|names| names ==name)
+    all.find{|names| names.name == name}
+  end
+
+  def self.find_or_create_by_name(name)
+    find_by_name(name) || create(name)
   end
 
 
