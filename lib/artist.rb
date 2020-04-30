@@ -26,6 +26,11 @@ class Artist
     end
   end
   
+  def genres
+    songs.collect{|song| song.genre}.uniq
+  end
+
+
   def self.all 
     @@all
   end
