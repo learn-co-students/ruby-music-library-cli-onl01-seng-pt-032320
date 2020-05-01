@@ -74,8 +74,6 @@ class Song
     genre_obj = Genre.new(genre_name)
     artist_obj = Artist.new(artist_name)
     song_obj = Song.new(song_name, artist_obj,genre_obj)
-
-
   end
 
 
