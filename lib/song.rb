@@ -45,6 +45,7 @@ class Song
   
   def genre=(genre)
     @genre = genre 
+    @genre.add_genre(self)
   end 
   
 end 

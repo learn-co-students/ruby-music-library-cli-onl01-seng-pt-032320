@@ -1,12 +1,13 @@
 class Genre
 
-  attr_accessor :name 
+  attr_accessor :name, :songs
   
   @@all = []
   
   def initialize (name)
     @name = name
     save
+    @songs = []
   end 
   
   def save
@@ -27,8 +28,23 @@ class Genre
     genre
   end 
   
-  def new_song (song_name, artist)
-    Song.new(song_name, artist, self)
+  def add_genre (song)      
+    song.genre = self if song.genre != self
+    @songs << song if @songs.include?(song) == false
+  end 
+  
+  def songs
+    @songs 
+  end 
+  
+  def artists 
+    unique = []
+    songs.each do |song|
+      if (unique.include?(song.artist) == false)
+        unique << song.artist
+      end 
+    end
+    unique
   end
   
 end 
