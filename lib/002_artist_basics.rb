@@ -1,6 +1,5 @@
 require 'pry'
 
-extend Concerns::Findable 
 
 class Artist  
   
@@ -29,10 +28,10 @@ def save
   @@all << self 
 end 
 
-def self.create(artist)
-  new_artist = Artist.new(artist)
-  @@all << self 
-  self 
+def self.create(name)
+  new_artist = Artist.new(name)
+  new_artist.save
+  new_artist 
 end 
 
 def songs 
