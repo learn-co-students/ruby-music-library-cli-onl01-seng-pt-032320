@@ -1,5 +1,5 @@
 class Song 
-  extend Concerns::Findable 
+ 
   attr_accessor :name
   
   
