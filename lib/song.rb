@@ -7,7 +7,7 @@ class Song
 
   def initialize(name, artist = nil, genre = nil)
     @name = name
-    self.artist=(artist)
+    self.artist=(artist) if artist != nil
     self.genre=(genre) if genre != nil
     self.save
 
@@ -34,10 +34,12 @@ class Song
 
   def save
      @@all << self
+
   end
 
   def self.all
     @@all
+
   end
 
   def self.destroy_all
@@ -46,20 +48,22 @@ class Song
 
   def self.create(song_name)
     song_obj = Song.new(song_name)
-    @@all << song_obj
+    if !(@@all.include?(song_obj))
+      @@all << song_obj
+    end
     song_obj
+
   end
 
- def self.find_by_name(name)
-    @@all.find do |song|
-        song.name == name
+ def self.find_by_name(song_name)
+
+    @@all.find do |song_obj|
+      song_obj.name == song_name
     end
   end
 
-  def self.find_or_create_by_name(song_name)
-    find_by_name(song_name) || create(song_name)
-
-
+  def self.find_or_create_by_name(name)
+    self.find_by_name(name) || self.create(name)
   end
 
 
