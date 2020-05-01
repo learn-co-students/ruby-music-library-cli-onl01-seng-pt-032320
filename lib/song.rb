@@ -48,4 +48,17 @@ class Song
     @genre.add_genre(self)
   end 
   
+  def self.find_by_name (namex)
+    self.all.find { |x| x.name == namex}
+  end 
+  
+  def self.find_or_create_by_name (namex)
+    if (self.find_by_name (namex))
+      @@all.uniq!
+      self.find_by_name (namex)
+    else 
+      self.create(namex)
+    end 
+  end 
+  
 end 
