@@ -1,5 +1,5 @@
 class Song 
- 
+
   attr_accessor :name
   
   
@@ -25,8 +25,8 @@ class Song
     
   end 
   
-  def self.create(song) 
-    created_song = Song.new(song)
+  def self.create(name) 
+    created_song = Song.new(name)
     @@all << self 
     self
   end 
@@ -56,11 +56,9 @@ end
   
   def self.find_by_name(song)
     @@all.detect {|song| song.name == name}
-
-  end 
+  end
   
   def self.find_or_create_by_name(name)
-  self.find_by_name(name) || self.create(name)
-  end
-
-end 
+   self.find_by_name(name) || self.create(name) 
+ end 
+ end 
