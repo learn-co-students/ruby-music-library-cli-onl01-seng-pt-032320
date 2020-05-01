@@ -1,3 +1,4 @@
+require 'pry'
 class Song 
 
   attr_accessor :name
@@ -8,8 +9,15 @@ class Song
   def initialize (name, artist = nil, genre = nil)
     @name = name
     save
-    artist=(artist) unless artist == nil 
-    genre=(genre) unless genre == nil 
+    
+    if !(artist == nil)
+      self.artist = artist
+      artist=(artist)
+    end 
+    if !(genre == nil)
+      self.genre = genre
+      genre=(genre)
+    end 
   end 
   
   def save
@@ -25,11 +33,14 @@ class Song
   end 
   
   def self.create (name)
-    self.new(name).save
+    self.new(name).tap do |song|
+      song.save
+    end 
   end 
   
   def artist=(artist)
-    @artist = artist 
+    @artist = artist
+    @artist.add_song(self)
   end 
   
   def genre=(genre)
