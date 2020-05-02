@@ -86,6 +86,12 @@ class MusicLibraryController
     puts "Please enter the name of a genre:"
     input = gets
      if (Genre.find_by_name(input) == true)
+       Song.all.each_with_index do |song, index|
+         if (song.genre.name == input)
+            number = index + 1
+            puts "#{number}. #{song.name} - #{song.genre.name}"
+         end 
+       end 
     else 
     end 
   end 
