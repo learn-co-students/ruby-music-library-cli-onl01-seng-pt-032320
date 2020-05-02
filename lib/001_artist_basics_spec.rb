@@ -1,5 +1,6 @@
 class Artist
   attr_accessor :name 
+  extend Concerns::Findable
   
   @@all = []
   
@@ -36,10 +37,10 @@ class Artist
     @@all << self
   end
   
-  def self.create(artisit)
-    created_artisit = Artist.new(artisit)
-    @@all << self
-    self
+  def self.create(name)
+    artist = Artist.new(name)
+    artist.save
+    artist
   end
   
   def genres
