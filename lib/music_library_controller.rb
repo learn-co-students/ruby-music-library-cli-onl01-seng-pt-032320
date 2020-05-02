@@ -35,32 +35,59 @@ class MusicLibraryController
   end 
   
   def list_songs
-    list = Song.all
-    list.sort! { |a,b| a.name <=> b.name }
-    list.each do |song|
+    list = Song.all.uniq
+    list = list.sort! { |a,b| a.name <=> b.name }
+    list.each_with_index do |song, index|
       #binding.pry
-      number = list.index(song) + 1
+      number = index + 1
       puts "#{number}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end 
   end 
   
   def list_artists
-    list = Song.all
-    list.sort! { |a,b| a.artist.name <=> b.artist.name }
+    list = Song.all.uniq 
+    list = list.sort! { |a,b| a.artist.name <=> b.artist.name }
+    array = []
     list.each do |song|
+      array << "#{song.artist.name}"
+    end 
+    array.uniq!
+    array.each_with_index do |song, index|
       #binding.pry
-      number = list.index(song) + 1
-      puts "#{number}. #{song.artist.name}"
+      number = index + 1
+      puts "#{number}. #{song}"
     end
   end 
   
   def list_genres
+    list = Song.all.uniq 
+    list = list.sort! { |a,b| a.genre.name <=> b.genre.name }
+    array = []
+    list.each do |song|
+      array << "#{song.genre.name}"
+    end 
+    array.uniq!
+    array.each_with_index do |song, index|
+      #binding.pry
+      number = index + 1
+      puts "#{number}. #{song}"
+    end
   end 
   
   def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets
+    if (Artist.find_by_name(input) == true)
+    else 
+    end 
   end 
   
   def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets
+     if (Genre.find_by_name(input) == true)
+    else 
+    end 
   end 
   
   def play_song
