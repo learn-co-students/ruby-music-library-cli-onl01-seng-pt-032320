@@ -15,6 +15,7 @@ class MusicImporter
     file_array.collect do |file|
       file.slice!("#{path}/")
       file
+    
     end
   end
 
