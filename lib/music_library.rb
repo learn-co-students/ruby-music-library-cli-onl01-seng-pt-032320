@@ -1,4 +1,5 @@
 class MusicLibraryController
+  'require Pry'
   def initialize(path = "./db/mp3s")
     MusicImporter.new(path).import
   end
@@ -23,8 +24,8 @@ class MusicLibraryController
   end
   
   def list_songs
-    Song.all.sort_by(&:name).each_with_index(1) do |song, idx|
-      puts "#{idx}, #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    Song.all.sort_by(&:name).each.with_index(1) do |song, idx|
+      puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
   end
 end
