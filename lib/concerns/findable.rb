@@ -1,26 +1,15 @@
 module Concerns::Findable
 
-  @@all = []
-    def initialize(name)
-      @name = name
-    end
+  def find_by_name(name)
+    all.detect{|a| a.name == name}
+  end
 
-    def self.all
-      @@all
+  def find_or_create_by_name(name)
+    if find_by_name(name)
+      find_by_name(name)
+    else
+      create(name)
     end
-
-    def self.destroy_all
-      @@all.clear
-    end
-
-    def save
-      @@all << self
-    end
-
-    def self.create(name)
-      name = self.new(name)
-      name.save
-      name
-    end
+  end
 
 end
