@@ -1,5 +1,5 @@
+require 'pry'
 class MusicLibraryController
-  'require Pry'
   def initialize(path = "./db/mp3s")
     MusicImporter.new(path).import
   end
@@ -21,9 +21,9 @@ class MusicLibraryController
     
     input = gets.strip
   end
-  end
-  
-  def list_songs
+end
+
+def list_songs
     Song.all.sort_by(&:name).each.with_index(1) do |song, idx|
       puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
@@ -69,7 +69,8 @@ class MusicLibraryController
     input = gets.strip
     if (1..Song.all.length).include?(input)
       song = list_songs[input]
+      binding.pry
       puts "Playing #{song.name} by #{song.artist.name}"
     end
-  end
+  end 
 end
