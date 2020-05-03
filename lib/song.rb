@@ -18,9 +18,9 @@ class Song
 
   def artist=(artist_obj)
 
-    if @artist == nil
+     if @artist == nil
       @artist = artist_obj
-    end
+      end
     if self.artist != nil
       @artist.add_song(self)
     end
@@ -51,7 +51,7 @@ class Song
   def self.create(song_name)
     song_obj = Song.new(song_name)
     if !(@@all.include?(song_obj))
-      @@all << song_obj
+     @@all << song_obj
     end
     song_obj
 
