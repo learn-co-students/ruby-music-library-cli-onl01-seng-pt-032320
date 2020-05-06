@@ -16,7 +16,6 @@ class Song
     if genre !=nil
       self.genre = genre
     end
-    #@@all << self
   end
 
   attr_accessor :artist, :genre, :files
