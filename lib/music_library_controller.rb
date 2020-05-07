@@ -1,4 +1,4 @@
-#require "pry"
+require "pry"
 class MusicLibraryController
 
   extend Concerns::Findable
@@ -6,7 +6,13 @@ class MusicLibraryController
   def initialize(path = "./db/mp3s")
     new_importer_object = MusicImporter.new(path)
     new_importer_object.import
+    
+     
   end
+  
+  # def self.all
+  #     @@all.uniq
+  # end
 
   def call
     input = ""
@@ -45,7 +51,7 @@ class MusicLibraryController
     songs_sorted_by_name = Song.all.sort_by do |song|
       song.name
     end
-    songs_sorted_by_name.each.with_index(1) do |song,idx|
+    songs_sorted_by_name.uniq.each.with_index(1) do |song,idx|
       puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
   end
@@ -58,7 +64,7 @@ class MusicLibraryController
       #returns an array of artists sorted by artist name
       artist.name
     end
-    songs_sorted_by_artist.each.with_index(1) do |artist,idx|
+    songs_sorted_by_artist.uniq.each.with_index(1) do |artist,idx|
       puts "#{idx}. #{artist.name}"
     end
   end
@@ -68,7 +74,7 @@ class MusicLibraryController
     songs_sorted_by_genre = Genre.all.sort_by do |genre|
       genre.name
     end
-    songs_sorted_by_genre.each.with_index(1) do |genre,index|
+    songs_sorted_by_genre.uniq.each.with_index(1) do |genre,index|
       puts "#{index}. #{genre.name}"
     end
   end
@@ -85,7 +91,7 @@ class MusicLibraryController
         song.name
       end
       
-      songs_sorted_by_name.each.with_index(1) do |song,idx|
+      songs_sorted_by_name.uniq.each.with_index(1) do |song,idx|
         puts "#{idx}. #{song.name} - #{song.genre.name}"
       end
     end
@@ -107,9 +113,21 @@ class MusicLibraryController
       end
     end
   end
+  
+  
+#   def play_song
+#                 puts "Which song number would you like to play?"
+#                 input = gets.strip.to_i
+#                 if (1..Song.all.length).include?(input)
+#                     song = Song.all.sort_by(&:name)[input - 1]
+#                 end
+#       puts "Playing #{song.name} by #{song.artist.name}" if song
+#     end
+# end
 
   def play_song
     puts "Which song number would you like to play?"
+   
     list_of_songs =  Song.all.sort{ |a, b| a.name <=> b.name }
 
     input = gets.strip.to_i
@@ -118,8 +136,14 @@ class MusicLibraryController
       
       song = list_of_songs[input+2]
       #binding.pry
-      puts "Playing #{song.name} by #{song.artist.name}"
+      puts "Playing #{song.name} by #{song.artist.name}" if song
+  
     end
+    #binding.pry
   end
-
 end
+   
+
+
+
+
