@@ -1,4 +1,4 @@
-class Artist
+bmitclass Artist
 
   extend Concerns::Findable
 
@@ -11,7 +11,7 @@ class Artist
   end
 
   def self.all
-    @@all.uniq
+    @@all
   end
 
   def self.destroy_all
@@ -45,7 +45,6 @@ class Artist
     end
     genres.uniq
   end
-
 
 
 end 

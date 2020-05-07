@@ -1,8 +1,6 @@
 class Song
 
-  #extend Concerns::Findable
-
-  attr_accessor :name
+ attr_accessor :name
 
   @@all = [] #this is a collection of all of the songs
 
@@ -83,15 +81,18 @@ class Song
     song_name = name.split(" - ")[1]
     artist_name = name.split(" - ")[0]
     genre_name = name.split(" - ")[2].chomp(".mp3")
-    #create song and assign artist and genre attribute, & create connections
-    #prevent the creation of duplicate objects: songs, artists, genres
-    #song = self.create(song_name)
-    song = self.find_or_create_by_name(song_name)
-    #song.artist = Artist.create(artist_name)
+    
+    song = self.new(song_name)
+    
     song.artist = Artist.find_or_create_by_name(artist_name)
-    #song.genre = Genre.create(genre_name)
+    
     song.genre = Genre.find_or_create_by_name(genre_name)
     song
   end
 
+
 end
+
+
+
+
