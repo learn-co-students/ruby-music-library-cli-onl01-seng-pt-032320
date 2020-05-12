@@ -31,7 +31,7 @@ describe "MusicLibraryController" do
   describe "#call" do
     let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
 
-    it "welcomes the user" do
+    it "welcome user" do
       allow(music_library_controller).to receive(:gets).and_return("exit")
 
       expect($stdout).to receive(:puts).with("Welcome to your music library!")
