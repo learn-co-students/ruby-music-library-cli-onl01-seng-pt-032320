@@ -1,4 +1,4 @@
-bmitclass Artist
+class Artist
 
   extend Concerns::Findable
 
@@ -47,4 +47,4 @@ bmitclass Artist
   end
 
 
-end 
+end
