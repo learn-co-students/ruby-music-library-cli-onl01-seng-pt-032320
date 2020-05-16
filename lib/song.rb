@@ -19,6 +19,10 @@ class Song
     genre.songs.push self unless genre.songs.include? self
   end
   
+  def genres
+    songs.each(&:genre)
+  end
+  
   def self.all
     @@all
   end 
