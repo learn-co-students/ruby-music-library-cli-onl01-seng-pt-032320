@@ -1,4 +1,5 @@
 class Artist
+  extends Concerns::Findable
   attr_accessor :name
   attr_reader :songs
   @@all = []
@@ -29,5 +30,9 @@ class Artist
   def add_song(song)
     song.artist = self unless song.artist
     songs.push song unless songs.include?(song)
+  end
+  
+  def genres
+    songs.collect(&:genre).uniq
   end
 end

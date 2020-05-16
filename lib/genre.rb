@@ -1,4 +1,5 @@
 class Genre
+  extend Concerns::Findable
   attr_accessor :name
   attr_reader :songs
 
@@ -25,5 +26,9 @@ class Genre
     genre = new(name)
     genre.save
     genre
+  end
+  
+  def artists
+    songs.map(&:artist).uniq
   end
 end
