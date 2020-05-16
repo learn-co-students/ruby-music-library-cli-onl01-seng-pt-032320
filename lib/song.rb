@@ -1,5 +1,5 @@
 class Song
-  extend Concerns::Findable
+  #extend Concerns::Findable
   attr_accessor :name
   attr_reader :artist, :genre
   @@all = []
@@ -44,5 +44,9 @@ class Song
     song = new(name)
     song.save
     song
+  end
+  
+  def self.new_from_filename
+    artist, song, genre = name.split(' - ')
   end
 end
